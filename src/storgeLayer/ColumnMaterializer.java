@@ -90,7 +90,7 @@ public class ColumnMaterializer {
 //		    System.out.println("aid[index]: " + s.aid[index]);
 //		}
 //	    }
-//	    
+//
 //	} catch(SQLException e) {
 //	    e.printStackTrace();
 //	} catch (IOException e) {

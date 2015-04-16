@@ -109,9 +109,9 @@ public class JasonParser extends Object{
 	return "the jason has been parsered";
     }
     
-//    public static void main(String args[]) throws IOException {
-//	JasonParser jasonParser = new JasonParser();
-//	
-//    }
+    public static void main(String args[]) throws IOException {
+	JasonParser jasonParser = new JasonParser();
+	
+    }
  
 }

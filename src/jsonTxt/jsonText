@@ -1,6 +1,5 @@
 {
-	"url": "www.sample-site.com",
-	"avg_site_visit": 128.5,
-	"hits": 22,
-	"count": "pl"
+	"urp": "www.sample-site.com",
+	"avg": 128.5,
+	"co": 30
 }
