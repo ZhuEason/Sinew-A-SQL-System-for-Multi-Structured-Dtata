@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Queue;
 
 import postgresqlJDBC.JDBC;
-import userLayer.Serialization;
+import userVersion2.Data;
 
 public class Select extends SqlParser{
     private JDBC con;
@@ -150,7 +150,7 @@ public void extract_key_txt() throws SQLException {
 		    byte[] Bytes = rs.getBytes(2);
 		    ByteArrayInputStream bais = new ByteArrayInputStream(Bytes);
 		    ObjectInputStream ois = new ObjectInputStream(bais);
-		    Serialization s = (Serialization)ois.readObject();
+		    Data s = (Data)ois.readObject();
 		    
 		    s_index = binarySearch(s.aid, s_id);
 		    System.out.println(s.value[s_index]);
@@ -175,7 +175,7 @@ public void extract_key_txt() throws SQLException {
 		    byte[] Bytes = rs.getBytes(2);
 		    ByteArrayInputStream bais = new ByteArrayInputStream(Bytes);
 		    ObjectInputStream ois = new ObjectInputStream(bais);
-		    Serialization s = (Serialization)ois.readObject();
+		    Data s = (Data)ois.readObject();
 		    
 		    w_index = binarySearch(s.aid, w_id);
 		    if (w_index >= 0) {
@@ -235,7 +235,7 @@ public void extract_key_txt() throws SQLException {
 		    ByteArrayInputStream bais = new ByteArrayInputStream(Bytes);
 		    ObjectInputStream ois = new ObjectInputStream(bais);
 //		    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		    Serialization s = (Serialization)ois.readObject();
+		    Data s = (Data)ois.readObject();
 		    
 		    s_index = binarySearch(s.aid, s_id);
 		    if (s_index >= 0) {
@@ -287,9 +287,9 @@ public void extract_key_txt() throws SQLException {
    
     
     public static void main(String[] args) throws SQLException {
-	String sql = "SELECT country FROM webrequests where hits < 23";
+	String sql = "SELECT num FROM webrequests where dyn1 = 2026";
 	String test = "SELECT co FROM webrequests where avg = 128.5";
-	Select s = new Select(test);
+	Select s = new Select(sql);
     }
   
 }

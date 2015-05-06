@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import postgresqlJDBC.JDBC;
-import userLayer.Serialization;
+import userVersion2.Data;
 
 public class SqlParser {
     private String sqlExp;
@@ -21,10 +21,10 @@ public class SqlParser {
     
     public SqlParser(String sqlExp) throws SQLException {
 	// TODO Auto-generated constructor stub
-	this.sqlExp = sqlExp;
-	pointer = 0;
-	sqlToken = new LinkedList<Value>();
-	con = new JDBC();
+		this.sqlExp = sqlExp;
+		pointer = 0;
+		sqlToken = new LinkedList<Value>();
+		con = new JDBC();
 	
 	int count = con.count("dictionary");
 	key_word = new String[count];
@@ -84,21 +84,21 @@ public class SqlParser {
 	    tempValue = tempValue.toLowerCase();
 	    
 	    for (int i = 0; i < key_word.length; i++) {
-		if (tempValue.equals(key_word[i])) {
-		    Value newValue = new Value(tempValue, KeyWord.KEY);
-		    System.out.println(newValue);
-		    sqlToken.add(newValue);
-		    flag = true;
-		}
+			if (tempValue.equals(key_word[i])) {
+				Value newValue = new Value(tempValue, KeyWord.KEY);
+				System.out.println(newValue);
+				sqlToken.add(newValue);
+				flag = true;
+			}
 	    }
 	    
 	    for (int i = 0; i < reserved_word.length; i++) {
-		if (tempValue.equals(reserved_word[i])) {
-		    Value newValue = new Value(tempValue, i);
-		    System.out.println(newValue);
-		    sqlToken.add(newValue);
-		    flag = true;
-		}
+			if (tempValue.equals(reserved_word[i])) {
+				Value newValue = new Value(tempValue, i);
+				System.out.println(newValue);
+				sqlToken.add(newValue);
+				flag = true;
+			}
 	    }
 	    
 	    if (!flag) {
@@ -160,47 +160,47 @@ public class SqlParser {
     }
     
     public int getId(String select_name) throws SQLException {
-   	int id = -1;
-   	String sql = "select _id from dictionary where key_name =  '" + select_name + "'";
-   	ResultSet rs = con.query(sql);
-   	if (rs != null) {
-   	    while (rs.next() ) {
-   		id = rs.getInt(1);
-   	    }
-   	}
+		int id = -1;
+		String sql = "select _id from dictionary where key_name =  '" + select_name + "'";
+		ResultSet rs = con.query(sql);
+		if (rs != null) {
+		    while (rs.next() ) {
+				id = rs.getInt(1);
+		    }
+		}
    	
-   	return id; 
-       }
+		return id; 
+    }
        
        
-       public static int binarySearch(int[] array, int value) {
-   	int low = 0; 
-   	int high = array.length - 1;
+    public static int binarySearch(int[] array, int value) {
+		int low = 0; 
+		int high = array.length - 1;
    	
-   	while (low <= high) {
-   	    int middle = (low + high) / 2;
+		while (low <= high) {
+		    int middle = (low + high) / 2;
    	    
-   	    if (value == array[middle]) {
-   		return middle;
-   	    } 
+		    if (value == array[middle]) {
+				return middle;
+			 } 
    	    
-   	    if (value > array[middle]) {
-   		low = middle + 1;
-   	    } else if (value < array[middle]) {
-   		high = middle - 1;
-   	    }
-   	}
+			if (value > array[middle]) {
+				low = middle + 1;
+			} else if (value < array[middle]) {
+				high = middle - 1;
+			}
+		}
    	
-   	return -1;
-       }
+		return -1;
+     }
     
     public Queue<Value> getToken() {
-	return sqlToken;
+		return sqlToken;
     }
     
-    public void write_back(ResultSet rs, Serialization s) throws IOException, SQLException {
-	ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	ObjectOutputStream oos = new ObjectOutputStream(baos);
+    public void write_back(ResultSet rs, Data s) throws IOException, SQLException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ObjectOutputStream oos = new ObjectOutputStream(baos);
 	oos.writeObject(s);
 	byte[] bytes = baos.toByteArray();
 	

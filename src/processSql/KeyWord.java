@@ -1,7 +1,7 @@
 package processSql;
 
 public class KeyWord {
-    	public static final int SELECT = 0;
+	public static final int SELECT = 0;
 	public static final int UPDATE = 1;
 	public static final int INSERT = 2;
 	public static final int FROM = 3;

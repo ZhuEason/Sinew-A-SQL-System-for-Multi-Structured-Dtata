@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.Queue;
 
 import postgresqlJDBC.JDBC;
-import userLayer.Serialization;
+import userVersion2.Data;
 
 public class Update extends SqlParser{
     private JDBC con;
@@ -154,7 +154,7 @@ public class Update extends SqlParser{
 		    byte[] Bytes = rs.getBytes(2);
 		    ByteArrayInputStream bais = new ByteArrayInputStream(Bytes);
 		    ObjectInputStream ois = new ObjectInputStream(bais);
-		    Serialization s = (Serialization)ois.readObject();
+		    Data s = (Data)ois.readObject();
 		    
 		    w_index = binarySearch(s.aid, w_id);
 		    if (w_index > 0) {
@@ -206,7 +206,7 @@ public class Update extends SqlParser{
 		    byte[] Bytes = rs.getBytes(2);
 		    ByteArrayInputStream bais = new ByteArrayInputStream(Bytes);
 		    ObjectInputStream ois = new ObjectInputStream(bais);
-		    Serialization s = (Serialization)ois.readObject();
+		    Data s = (Data)ois.readObject();
 		    
 		    s_index = binarySearch(s.aid, s_id);
 		    if (s_index >= 0) {
@@ -237,7 +237,7 @@ public class Update extends SqlParser{
 		    byte[] Bytes = rs.getBytes(2);
 		    ByteArrayInputStream bais = new ByteArrayInputStream(Bytes);
 		    ObjectInputStream ois = new ObjectInputStream(bais);
-		    Serialization s = (Serialization)ois.readObject();
+			Data s = (Data)ois.readObject();
 		    
 		    s_index = binarySearch(s.aid, s_id);
 		    w_index = binarySearch(s.aid, w_id);
@@ -290,7 +290,7 @@ public class Update extends SqlParser{
    
     
     public static void main(String[] args) throws SQLException {
-	String sql = "UPDATE webrequests SET co = 40 WHERE avg = 128.5";
+	String sql = "UPDATE webrequests SET dyn1 = 302 WHERE dyn1 = 2026" ;
 	Update u = new Update(sql);
     }
 }

@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import userLayer.Serialization;
+import userVersion2.Data;
 import postgresqlJDBC.*;
 
 public class ColumnMaterializer {
@@ -46,7 +46,7 @@ public class ColumnMaterializer {
 		    int in_id = rs.getInt(1);
 		    ByteArrayInputStream bais = new ByteArrayInputStream(Bytes);
 		    ObjectInputStream ois = new ObjectInputStream(bais);
-		    Serialization s = (Serialization)ois.readObject();
+		    Data s = (Data)ois.readObject();
 		    
 		    index = binarySearch(s.aid, id);
 		    System.out.println("index: " + index);
@@ -134,7 +134,7 @@ public class ColumnMaterializer {
 		String in_type = "";
 		
 		if (type.equals("string")) {
-		    in_type = "varchar(20)";
+		    in_type = "varchar(40)";
 		} else if (type.equals("double")) {
 		    in_type = "double precision";
 		} else if (type.equals("integer")) {

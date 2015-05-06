@@ -114,7 +114,7 @@ public class Loader extends JasonParser{
 	    }
 	    
 	    aid[j] = a_key;
-	   value[i] = o_key;
+		value[i] = o_key;
 	//    System.out.println("lalallalal");
 	    quickSort(l, j);
 	    quickSort(j+1, h);
